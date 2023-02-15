@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/Platformer/Scenes/LevelParser.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
