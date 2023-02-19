@@ -3,7 +3,12 @@ guid: 9e6568559d6661b4eba05e67f1401a83
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - rockPrefab: {instanceID: 0}
+  - brickPrefab: {instanceID: 0}
+  - questionBoxPrefab: {instanceID: 0}
+  - stonePrefab: {instanceID: 0}
+  - environmentRoot: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
