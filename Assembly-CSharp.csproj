@@ -51,8 +51,12 @@
      <Folder Include="Assets/Platformer/Textures/blocks" />
      <Folder Include="Assets/Platformer/Scenes" />
      <Folder Include="Assets/Scenes" />
+     <Folder Include="Assets/Platformer/MarioDemo/Mario" />
+     <Folder Include="Assets/Platformer/MarioDemo" />
      <Folder Include="Assets/Platformer" />
+     <None Include="Assets/Platformer/MarioDemo/Mario/Tag.txt" />
      <Folder Include="Assets/Platformer/Prefabs" />
+     <Folder Include="Assets/Platformer/MarioDemo/Mario/images" />
      <Folder Include="Assets/Platformer/Textures" />
      <Folder Include="Assets/Platformer/Scripts" />
      <None Include="Assets/Resources/Test.txt" />
