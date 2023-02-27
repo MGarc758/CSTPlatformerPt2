@@ -12,53 +12,21 @@ public class LevelParser : MonoBehaviour
     public GameObject brickPrefab;
     public GameObject questionBoxPrefab;
     public GameObject stonePrefab;
-    public Transform environmentRoot;
+    public GameObject goalPrefab;
+    public GameObject waterPrefab;
     
-    public TextMeshProUGUI timerText;
-    public TextMeshProUGUI coinsText;
-    public TextMeshProUGUI scoreText;
-
-    private int timeLeft;
-    private int timerSinceReset;
-    private int coinsCollected;
-    private int score;
+    public Transform environmentRoot;
 
     // --------------------------------------------------------------------------
     void Start()
     {
         LoadLevel();
-        timeLeft = 400;
-        timerSinceReset = 0;
-        coinsCollected = 0;
-        score = 0;
     }
 
     // --------------------------------------------------------------------------
     void Update()
     {
-        scoreText.text = "Score \n" + score.ToString();
-        coinsText.text = "Coins \n" + coinsCollected.ToString();
-        timerText.text = "Time \n" + Math.Floor(timeLeft - (Time.realtimeSinceStartup - timerSinceReset)).ToString();
-
-        if (Input.GetMouseButton(0))
-        {
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit raycastHit;
-
-            if (Physics.Raycast(ray, out raycastHit))
-            {
-                if (raycastHit.collider.name == "QuestionBlock(Clone)")
-                {
-                    Object.Destroy(raycastHit.collider.gameObject);
-                    coinsCollected++;
-                    score += 100;
-                } else if (raycastHit.collider.name == "BrickBlock(Clone)")
-                {
-                    Object.Destroy(raycastHit.collider.gameObject);
-                }
-            }
-        }
-
+        
         if (Input.GetKeyDown(KeyCode.R))
         {
             ReloadLevel();
@@ -111,6 +79,14 @@ public class LevelParser : MonoBehaviour
                 {
                     var newQuestion = Instantiate(questionBoxPrefab, new Vector3(column, row, 0f), Quaternion.identity);
                     newQuestion.transform.parent = gameObject.transform.GetChild(0).transform;
+                } else if (letter == 'w')
+                {
+                    var newWater = Instantiate(waterPrefab, new Vector3(column, row, 0f), Quaternion.identity);
+                    newWater.transform.parent = gameObject.transform.GetChild(0).transform;
+                } else if (letter == 'g')
+                {
+                    var newGoal = Instantiate(goalPrefab, new Vector3(column, row, 0f), Quaternion.identity);
+                    newGoal.transform.parent = gameObject.transform.GetChild(0).transform;
                 }
                 // Todo - Instantiate a new GameObject that matches the type specified by letter
                 // Todo - Position the new GameObject at the appropriate location by using row and column
@@ -123,12 +99,6 @@ public class LevelParser : MonoBehaviour
     // --------------------------------------------------------------------------
     private void ReloadLevel()
     {
-        timeLeft = 400;
-        timerSinceReset = Convert.ToInt32(Math.Floor(Time.realtimeSinceStartup));
-        
-        score = 0;
-        coinsCollected = 0;
-        
         foreach (Transform child in environmentRoot)
         {
            Destroy(child.gameObject);
